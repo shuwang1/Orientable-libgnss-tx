@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "gnss-sig-gen-swift",
-    platforms: [.macOS(.v10_15)],
+    platforms: [.macOS("10.15.4")],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.0"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.3"),
