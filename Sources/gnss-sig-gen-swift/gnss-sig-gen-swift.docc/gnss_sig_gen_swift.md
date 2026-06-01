@@ -13,7 +13,7 @@ A modularized GNSS L1 C/A baseband signal generator for SDR hardware.
 - **Custom Trajectories**: Support for ECEF/LLH CSV files and NMEA GGA streams.
 - **Scalable Sample Generation**: Optimized synthesis supporting various sampling frequencies and bit depths.
 
-## Usage
+### Usage
 
 For detailed installation and execution instructions, please refer to the `INSTALL.md` file in the project root.
 
