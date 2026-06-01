@@ -6,6 +6,11 @@ Copyright (c) 2026 Shu Wang <shuwang1@outlook.com>. All rights reserved.
 
 This software and its associated documentation (the "Software") are proprietary to Shu Wang. All rights, title, and interest in and to the Software are and shall remain the exclusive property of Shu Wang.
 
+ALL TITLE, COPYRIGHT, AND OTHER INTELLECTUAL PROPERTY RIGHTS IN AND TO THE SOFTWARE ARE AND SHALL REMAIN THE SOLE AND EXCLUSIVE PROPERTY OF THE LICENSOR. ALL RIGHTS NOT EXPRESSLY GRANTED HEREIN ARE RESERVED.
+
+## Explicit Commercial Restriction
+The Software is licensed, not sold. You may use, download, and modify this Software strictly for Personal, or Educational purposes. Any commercial use, including but not limited to selling the Software, using it to provide a commercial service, or incorporating it into a for-profit product, is strictly prohibited without an explicit commercial license from the Licensor.
+
 ## Limited License Grant
 
 Subject to the terms and conditions of this License, permission is hereby granted to any person obtaining a copy of this Software to use the Software for **non-commercial educational or personal use only**.
