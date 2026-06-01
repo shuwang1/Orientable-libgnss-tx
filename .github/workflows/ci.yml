@@ -15,10 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-      # - name: Setup Swift
-      #   uses: swiftlang/setup-swift@v1
-      #   with:
-      #     swift-version: "6.3"
+    - name: Setup Swift
+      uses: swiftlang/setup-swift@v1
+      with:
+        swift-version: "6.3"
         
     - name: Build and Test
       run: swift build -v
