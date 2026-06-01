@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build-docs:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     
     steps:
     - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
     - name: Setup Swift
       uses: swiftlang/setup-swift@v1
       with:
-        swift-version: "6.3"
+        swift-version: "6.3.0"
         
     - name: Build Documentation
       run: |
