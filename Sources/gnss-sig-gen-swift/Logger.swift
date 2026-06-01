@@ -80,7 +80,9 @@ struct Logger {
     static func log(_ level: LogLevel, _ message: String, file: String = #file, line: Int = #line, function: String = #function) {
         guard level >= minLevel else { return }
         
-        let timestamp = Date().formatted(.dateTime.hour(.twoDigits(amPM: .abbreviated)).minute(.twoDigits).second(.twoDigits).secondFraction(.fractional(3)))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm:ss.SSS a"
+        let timestamp = formatter.string(from: Date())
         
         let fileName = URL(fileURLWithPath: file).lastPathComponent
         
