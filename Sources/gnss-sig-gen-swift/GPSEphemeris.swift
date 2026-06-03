@@ -239,7 +239,8 @@ class GPSEphemeris {
                 let oparts = parseFixed(oline, widths: [3, 19, 19, 19, 19])
                 for j in 0..<4 {
                     if j + 1 >= oparts.count { break }
-                    let val = Double(oparts[j+1].replacingOccurrences(of: "D", with: "E")) ?? 0
+                    let rawVal = oparts[j+1].trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "D", with: "E")
+                    let val = Double(rawVal) ?? 0
                     if i == 1 {
                         if j == 0 { eph.iode = Int(val) }
                         else if j == 1 { eph.crs = val }
@@ -397,7 +398,8 @@ class GPSEphemeris {
                 let oparts = parseFixed(oline, widths: [4, 19, 19, 19, 19])
                 for j in 0..<4 {
                     if j + 1 >= oparts.count { break }
-                    let val = Double(oparts[j+1].replacingOccurrences(of: "D", with: "E")) ?? 0
+                    let rawVal = oparts[j+1].trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "D", with: "E")
+                    let val = Double(rawVal) ?? 0
                     if i == 1 {
                         if j == 0 { eph.iode = Int(val) }
                         else if j == 1 { eph.crs = val }

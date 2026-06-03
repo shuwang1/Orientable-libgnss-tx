@@ -106,7 +106,22 @@ struct GNSSSigGen: ParsableCommand {
         
         for i in 0..<simulator.numSteps {
             if let samples = simulator.step(stepIdx: i) {
-                let data = samples.withUnsafeBufferPointer { Data(buffer: $0) }
+                let data: Data
+                if config.dataFormat == 8 {
+                    let samples8 = samples.map { Int8(truncatingIfNeeded: $0 / 16) }
+                    data = samples8.withUnsafeBufferPointer { ptr in
+                        Data(buffer: ptr)
+                    }
+                } else if config.dataFormat == 1 {
+                    let samples8 = samples.map { $0 >= 0 ? Int8(1) : Int8(-1) }
+                    data = samples8.withUnsafeBufferPointer { ptr in
+                        Data(buffer: ptr)
+                    }
+                } else {
+                    data = samples.withUnsafeBufferPointer { ptr in
+                        Data(buffer: ptr)
+                    }
+                }
                 try fileHandle.write(contentsOf: data)
             }
             if i % 100 == 0 {

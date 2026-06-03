@@ -62,7 +62,7 @@ struct Trajectory {
         var results = [Vector3]()
         let lines = content.components(separatedBy: .newlines)
         for line in lines {
-            let parts = line.components(separatedBy: ",")
+            let parts = line.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
             if parts.count >= 4 {
                 if let lat = Double(parts[1]), let lon = Double(parts[2]), let h = Double(parts[3]) {
                     let llh = Vector3(lat * Constants.D2R, lon * Constants.D2R, h)
@@ -85,7 +85,7 @@ struct Trajectory {
         var results = [Vector3]()
         let lines = content.components(separatedBy: .newlines)
         for line in lines {
-            let parts = line.components(separatedBy: ",")
+            let parts = line.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
             if parts.count > 0 && parts[0].suffix(3) == "GGA" {
                 if parts.count >= 10 {
                     let latStr = parts[2]

@@ -79,7 +79,7 @@ struct GPSSignal {
             var codePhase = c.codePhaseFixed
             let codeStep = c.codePhaseStep
             var carrPhase = c.carrPhase
-            let carrStep = UInt32(c.carrPhaseStep)
+            let carrStep = UInt32(bitPattern: Int32(truncatingIfNeeded: c.carrPhaseStep))
             
             var isamp = 0
             while isamp < iqBuffSize {

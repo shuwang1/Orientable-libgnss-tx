@@ -110,10 +110,16 @@ class Simulator {
             } else {
                 if let path = Trajectory.readUserMotion(filename: config.umFile) { xyz = path }
             }
-            if xyz.isEmpty { return false }
+        }
+        if xyz.isEmpty { return false }
+        Logger.info("Loaded \(xyz.count) trajectory points. First point: \(xyz[0].x), \(xyz[0].y), \(xyz[0].z)")
+        
+        if config.staticMode || xyz.count == 1 {
+            numSteps = config.duration * 10
+        } else {
+            numSteps = xyz.count
         }
         
-        numSteps = config.staticMode ? config.duration * 10 : xyz.count
         if numSteps > config.duration * 10 { numSteps = config.duration * 10 }
         
         if let result = GPSEphemeris.loadGPSEphemeris(fname: config.navFile) {
@@ -131,6 +137,8 @@ class Simulator {
                 }
             }
         }
+        
+        if config.g0.week == -1 { return false }
         
         self.ieph = -1
         for i in 0..<eph.count {
@@ -216,7 +224,8 @@ class Simulator {
         let neu = MathUtils.ecef2neu(los, t: tmat)
         azel = MathUtils.neu2azel(neu)
         
-        return (azel.el * Constants.R2D > elvMask) ? 1 : 0
+        let elDeg = azel.el * Constants.R2D
+        return (elDeg > elvMask) ? 1 : 0
     }
     
     /// Executes one 0.1s simulation step.
@@ -227,7 +236,12 @@ class Simulator {
         
         Logger.simTime = Double(stepIdx) / 10.0
         
-        let currentXYZ = config.staticMode ? (xyz.first ?? Vector3(0,0,0)) : xyz[stepIdx]
+        let currentXYZ: Vector3
+        if config.staticMode || xyz.count == 1 {
+            currentXYZ = xyz[0]
+        } else {
+            currentXYZ = xyz[stepIdx]
+        }
         var gains = [Int](repeating: 0, count: Constants.MAX_CHAN)
         
         for i in 0..<Constants.MAX_CHAN {

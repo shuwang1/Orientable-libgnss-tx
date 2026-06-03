@@ -78,6 +78,10 @@ struct Positioning {
         let pz = ypk * sik
         let pos = Vector3(px, py, pz)
         
+        if px.isNaN || py.isNaN || pz.isNaN {
+            Logger.error("NaN Satellite Position detected for PRN with sqrtA: \(eph.sqrtA), ecc: \(eph.ecc), M0: \(eph.M0)")
+        }
+        
         let tmp = ypkdot * cik - ypk * sik * ikdot
         let vx = -eph.omgkdot * py + xpkdot * cok - tmp * sok
         let vy = eph.omgkdot * px + xpkdot * sok + tmp * cok
