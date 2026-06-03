@@ -8,3 +8,5 @@ DerivedData/
 .netrc
 *.bin
 *.tar.gz
+INTEGRATION_REPORT.md
+CHANGELOG.md
