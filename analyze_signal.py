@@ -1,7 +1,7 @@
 import numpy as np
 import sys
 
-filename = "/home/shu/Documents/GNSS-Receiver/erlangnetwork-gnsslib-master/tests/integration_test_20s.bin"
+filename = "./tests/integration_test_20s.bin"
 data = np.fromfile(filename, dtype=np.int8)
 print(f"File size: {len(data)} bytes")
 if len(data) > 0:
